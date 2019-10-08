@@ -5,6 +5,7 @@ using StringTools;
 
 class Prepare {
 	static function zipDir(dir:String, outPath:String):Void {
+		trace('zipDir: $dir');
 		var entries = new List<haxe.zip.Entry>();
 
 		function add(path:String, target:String) {
@@ -25,6 +26,7 @@ class Prepare {
 					data: bytes,
 					crc32: haxe.crypto.Crc32.make(bytes),
 				}
+				trace(haxe.Json.stringify(entry));
 				haxe.zip.Tools.compress(entry, 9);
 				entries.add(entry);
 			}
